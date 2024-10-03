@@ -19,27 +19,22 @@ module dff_mem #(
     input  wire       rst_n     // reset_n - low to reset
 );
 
-  localparam addr_bits = $clog2(RAM_BYTES);
-
-  wire [addr_bits-1:0] addr = ui_in[addr_bits-1:0];
-  wire wr_en = ui_in[7];
+  wire wr_en = not rout_n;
   assign uio_oe  = 8'b0;  // All bidirectional IOs are inputs
   assign uio_out = 8'b0;
 
   reg [7:0] RAM[RAM_BYTES - 1:0];
 
   always @(posedge clk) begin
-    if (!rst_n) begin
-      uo_out <= 8'b0;
-      for (int i = 0; i < RAM_BYTES; i++) begin
-        RAM[i] <= 8'b0;
+      // case 1: write to ram
+      if (wr_en and not rin) begin
+          RAM[addr_in] <= data_in; 
+      end else if (rin and not wr_en) begin
+      // case 2: read to ram
+          data_out <= RAM[addr_in];
+      end else begin
+          // case 3: conflict, do nothing
       end
-    end else begin
-      if (wr_en) begin
-        RAM[addr] <= uio_in;
-      end
-      uo_out <= RAM[addr];
-    end
   end
 
 endmodule  // dff_mem
