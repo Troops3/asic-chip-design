@@ -21,7 +21,7 @@ module tt_um_dff_mem #(
 
   wire _unused = &{ena, rst_n, ui_in, uo_out, uio_in, uio_out, uio_oe};
     
-  wire wr_en = not rout_n;
+  wire wr_en = ~rout_n;
   assign uio_oe  = 8'b0;  // All bidirectional IOs are inputs
   assign uio_out = 8'b0;
 
@@ -29,9 +29,9 @@ module tt_um_dff_mem #(
 
   always @(posedge clk) begin
       // case 1: write to ram
-      if (wr_en and not rin) begin
+      if (wr_en && ~rin) begin
           RAM[addr_in] <= data_in; 
-      end else if (rin and not wr_en) begin
+      end else if (rin && ~wr_en) begin
       // case 2: read to ram
           data_out <= RAM[addr_in];
       end else begin
