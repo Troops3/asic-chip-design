@@ -1,6 +1,6 @@
 `default_nettype none
 
-module dff_mem #(
+module tt_um_dff_mem #(
     parameter RAM_BYTES = 16
 ) (
     input wire [3:0] addr_in,
@@ -39,4 +39,4 @@ module dff_mem #(
       end
   end
 
-endmodule  // dff_mem
+endmodule  // tt_um_dff_mem
