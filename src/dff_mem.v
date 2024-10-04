@@ -19,6 +19,8 @@ module dff_mem #(
     input  wire       rst_n     // reset_n - low to reset
 );
 
+  wire _unused = &{ena, rst_n, ui_in, uo_out, uio_in, uio_out, uio_oe};
+    
   wire wr_en = not rout_n;
   assign uio_oe  = 8'b0;  // All bidirectional IOs are inputs
   assign uio_out = 8'b0;
