@@ -12,8 +12,6 @@ module tt_um_dff_mem #(
     input  wire       rst_n     // reset_n - low to reset
 );
     localparam addr_bits = 4;
-
-  wire _unused = &{ena, rst_n, ui_in, uo_out, uio_in, uio_out, uio_oe};
     
   wire [3:0] addr = ui_in[3:0];
   wire wr_en = ui_in[7];
