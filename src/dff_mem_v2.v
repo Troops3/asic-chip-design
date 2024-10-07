@@ -5,7 +5,7 @@ module tt_um_dff_mem #(
 ) (
     input  wire [3:0] addr,    // address input
     input  wire [7:0] uio_in,   // IOs: input for writes (8 bits)
-    output wire [7:0] uio_out,  // IOs: output for reads (8 bits)
+    output reg [7:0] uio_out,  // IOs: output for reads (8 bits)
     input wire wr_en,            //write enable
     input wire r_en,             //read enable
 
