@@ -10,7 +10,6 @@ module tt_um_dff_mem #(
     input wire lr_n,             // Active-low Load RAM signal (RAM loads from MAR)
     input wire clk               // Clock signal
 );
-    localparam addr_bits = 4;
 
   reg [7:0] RAM[RAM_BYTES - 1:0];
 
