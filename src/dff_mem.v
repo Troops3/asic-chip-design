@@ -16,9 +16,11 @@ module tt_um_dff_mem #(
   wire [3:0] addr = ui_in[3:0];
   wire ce_n = ui_in[7];
   wire lr_n = ui_in[6];
-    
-  // assign uio_oe  = 8'b0;  
-  // assign uio_out = 8'b0;
+
+    //set to a value to prevent errors
+    assign uo_out = 8'b0;      // Set output to a known state
+    assign uio_oe = !lr_n ? 8'b11111111 : 8'b00000000;  // Output enable logic
+
 
   reg [7:0] RAM[RAM_BYTES - 1:0];
 
