@@ -12,11 +12,10 @@ module tt_um_dff_mem #(
     input  wire       rst_n,     // reset_n - low to reset
     input  wire       clk        //for clock sychroniztion
 );
-    localparam addr_bits = 4;
     
   wire [3:0] addr = ui_in[3:0];
-  wire wr_en = ui_in[7];
-  wire r_en = ui_in[6];
+  wire ce_n = ui_in[7];
+  wire lr_n = ui_in[6];
     
   // assign uio_oe  = 8'b0;  
   // assign uio_out = 8'b0;
@@ -25,13 +24,13 @@ module tt_um_dff_mem #(
 
   always @(posedge clk) begin
       // case 1: write to ram
-      if (wr_en && ~r_en) begin
+      if (!lr_n) begin
           RAM[addr] <= uio_in; 
-      end else if (r_en && ~wr_en) begin
-      // case 2: read to ram
-          uio_out <= RAM[addr];
       end else begin
-          // case 3: conflict, do nothing
+      // case 2: read from ram
+          if(!ce_n) begin
+              uio_out <= RAM[addr];
+          end
       end
   end
 
