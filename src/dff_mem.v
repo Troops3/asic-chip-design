@@ -22,16 +22,18 @@ module tt_um_dff_mem #(
 
   reg [7:0] RAM[RAM_BYTES - 1:0];
 
-  always @(posedge clk) begin
-      // case 1: write to ram
-      if (!lr_n) begin
-          RAM[addr] <= uio_in; 
-      end else begin
-      // case 2: read from ram
-          if(!ce_n) begin
-              uio_out <= RAM[addr];
-          end
-      end
-  end
+    always @(posedge clk) begin
+        if (!rst_n) begin
+            uio_out <= 8'b0; // Reset the output
+            //reset ram itself?
+        end else begin
+            if (!lr_n) begin
+                RAM[addr] <= uio_in;
+            end else if (!ce_n) begin
+                uio_out <= RAM[addr];
+            end
+        end
+    end
+
 
 endmodule  // tt_um_dff_mem
