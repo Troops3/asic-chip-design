@@ -1,6 +1,6 @@
 # Tiny Tapeout project information
 project:
-  title:        "test"      # Project title
+  title:        "DFF Memory"      # Project title
   author:       "dmrudait"    # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "test TinyTapeout Project"      # One line description of what your project does
@@ -17,40 +17,40 @@ project:
   # Source files must be in ./src and you must list each source file separately, one per line.
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
-    - "dff_mem.v"
+    - "project.v"
     
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: "in_0"
-  ui[1]: "in_1"
-  ui[2]: "in_2"
-  ui[3]: "in_3"
-  ui[4]: "in_4"
-  ui[5]: "in_5"
-  ui[6]: "in_6"
-  ui[7]: "in_7"
-
+  ui[0]: "mar[0]"        # Address bits (4-bit MAR)
+  ui[1]: "mar[1]"
+  ui[2]: "mar[2]"
+  ui[3]: "mar[3]"
+  ui[4]: "ce_n"          # Active-low Chip Enable
+  ui[5]: "lr_n"          # Active-low Load RAM
+  ui[6]: "clk"           # Clock input
+  ui[7]: ""              # Unused input pin
+  
   # Outputs
-  uo[0]: "out_0"
-  uo[1]: "out_1"
-  uo[2]: "out_2"
-  uo[3]: "out_3"
-  uo[4]: "out_4"
-  uo[5]: "out_5"
-  uo[6]: "out_6"
-  uo[7]: "out_7"
+  uo[0]: "data_out[0]"   # 8-bit data_out signal (bit 0)
+  uo[1]: "data_out[1]"   # Data output bit 1
+  uo[2]: "data_out[2]"   # Data output bit 2
+  uo[3]: "data_out[3]"   # Data output bit 3
+  uo[4]: "data_out[4]"   # Data output bit 4
+  uo[5]: "data_out[5]"   # Data output bit 5
+  uo[6]: "data_out[6]"   # Data output bit 6
+  uo[7]: "data_out[7]"   # Data output bit 7
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
-  uio[7]: ""
+  uio[0]: "data_in[0]"   # 8-bit data_in signal (bit 0)
+  uio[1]: "data_in[1]"   # Data input bit 1
+  uio[2]: "data_in[2]"   # Data input bit 2
+  uio[3]: "data_in[3]"   # Data input bit 3
+  uio[4]: "data_in[4]"   # Data input bit 4
+  uio[5]: "data_in[5]"   # Data input bit 5
+  uio[6]: "data_in[6]"   # Data input bit 6
+  uio[7]: "data_in[7]"   # Data input bit 7
 
 # Do not change!
 yaml_version: 6
