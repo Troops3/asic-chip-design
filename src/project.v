@@ -12,6 +12,7 @@ module tt_um_dff_mem #(
 );
 
     localparam addr_bits = 4;
+    wire [7:0] data_out;
 
     reg [7:0] RAM[RAM_BYTES - 1:0];
     wire [3:0] mar = ui_in[3:0];  // Use ui_in[3:0] for the address
