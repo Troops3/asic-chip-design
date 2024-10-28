@@ -9,7 +9,7 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works!!!!
+This is a test of DFF memory for ECE298A
 
 ## How to test
 
